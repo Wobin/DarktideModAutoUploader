@@ -51,16 +51,16 @@ jobs:
           path: ./out/
     outputs:
       mod_name: ${{ steps.mod-repack.outputs.modname }}
-  # upload-release:
-  #   needs: ["pack-mod"]
-  #   uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
-  #   with:
-  #     nexusmods_game_id: warhammer40kdarktide
-  #     nexusmods_mod_id: ${{ inputs.nexusmods_mod_id }}
-  #     mod_filename: ${{ needs.pack-mod.outputs.mod_name }}.zip
-  #     mod_version: ${{ inputs.mod_version }}
-  #     mod_description: ${{ inputs.mod_description }}
-  #     artifact_name: ${{ needs.pack-mod.outputs.mod_name }}
-  #   secrets:
-  #     NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
-  #     NEXUSMODS_SESSION_COOKIE: ${{ secrets.NEXUSMODS_SESSION_COOKIE }}
+  upload-release:
+    needs: ["pack-mod"]
+    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
+    with:
+      nexusmods_game_id: warhammer40kdarktide
+      nexusmods_mod_id: ${{ inputs.nexusmods_mod_id }}
+      mod_filename: ${{ needs.pack-mod.outputs.mod_name }}.zip
+      mod_version: ${{ inputs.mod_version }}
+      mod_description: ${{ inputs.mod_description }}
+      artifact_name: ${{ needs.pack-mod.outputs.mod_name }}
+    secrets:
+      NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
+      NEXUSMODS_SESSION_COOKIE: ${{ secrets.NEXUSMODS_SESSION_COOKIE }}
