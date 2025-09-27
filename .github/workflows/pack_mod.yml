@@ -37,8 +37,7 @@ jobs:
       - name: Repack zipball to be inside mod folder
         id: mod-repack
         run: |
-          ls -1 ./src/*.mod | xargs -n 1 basename | sed s/.mod// >> modname.txt
-          MODNAME=`cat modname.txt`
+          MODNAME=$(ls -1 ./src/*.mod | xargs -n 1 basename | sed s/.mod//)
           mkdir out
           mkdir out/${MODNAME}
           mv ./src/scripts ./out/${MODNAME}
