@@ -37,12 +37,12 @@ jobs:
       - name: Repack zipball to be inside mod folder
         id: mod-repack
         run: |
-          MODNAME=$(ls -1 ./src/*.mod | xargs -n 1 basename | sed s/.mod//)
+          MODNAME=$(ls -1 ./src/*.mod | xargs -0 basename | sed s/.mod//)
           mkdir out
-          mkdir out/${MODNAME}
-          mv ./src/scripts ./out/${MODNAME}
-          mv ./src/${MODNAME}.mod ./out/${MODNAME}
-          echo "modname=${MODNAME}" >> "$GITHUB_OUTPUT"
+          mkdir out/"${MODNAME}"
+          mv ./src/scripts ./out/"${MODNAME}"
+          mv ./src/"${MODNAME}.mod" ./out/"${MODNAME}"
+          echo "modname=\"${MODNAME}\"" >> "$GITHUB_OUTPUT"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
