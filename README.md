@@ -24,7 +24,7 @@ on:
 
 jobs:
   fetch-upload:
-    uses: bountygiver/DarktideModAutoUploader/.github/workflows/pack_mod.yml@v1
+    uses: bountygiver/DarktideModAutoUploader/.github/workflows/pack_mod.yml@v2
     with:
       nexusmods_mod_id: <replace with your nexus mod ID>
       mod_version: ${{ github.event.release.name }}
