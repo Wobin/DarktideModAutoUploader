@@ -49,10 +49,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.mod-repack.outputs.modname }}
+          name: ${{ fromJson(steps.mod-repack.outputs.modname) }}
           path: ./out/
     outputs:
-      mod_name: ${{ steps.mod-repack.outputs.modname }}
+      mod_name: ${{ fromJson(steps.mod-repack.outputs.modname) }}
   upload-release:
     needs: ["pack-mod"]
     uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
