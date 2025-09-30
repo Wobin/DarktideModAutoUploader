@@ -40,7 +40,8 @@ jobs:
           FILENAME=$(ls -1 ./src/*.mod | xargs -0 basename)
           MODNAME=${FILENAME%.mod}
           mkdir out out/"${MODNAME}"
-          mv ./src/scripts ./src/"${MODNAME}.mod" ./out/"${MODNAME}"
+          set +e
+          mv ./src/scripts ./src/audio ./src/content ./src/dialogues ./src/"${MODNAME}.mod" ./out/"${MODNAME}"
           echo "modname=\"${MODNAME}\"" >> "$GITHUB_OUTPUT"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
