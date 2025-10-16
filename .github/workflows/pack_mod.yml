@@ -55,7 +55,7 @@ jobs:
       mod_name: ${{ fromJson(steps.mod-repack.outputs.modname) }}
   upload-release:
     needs: ["pack-mod"]
-    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
+    uses: Wobin/BUTR-workflows/.github/workflows/release-nexusmods.yml@master
     if: ${{ inputs.upload }}
     with:
       nexusmods_game_id: warhammer40kdarktide
